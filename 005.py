@@ -1,17 +1,14 @@
+from apscheduler.events import EVENT_JOB_EXECUTED,EVENT_JOB_ERROR
 from pytz import utc
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.jobstores.mongodb import MongoDBJobStore
 from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
 from apscheduler.executors.pool import ThreadPoolExecutor,ProcessPoolExecutor
 import logging
-
 # increase the logging level of the apscheduler logger to the DEBUG level
 logging.basicConfig()
 logging.getLogger('apscheduler').setLevel(logging.DEBUG)
 
-
-EVENT_JOB_EXECUTED = ''
-ECENT_JOB_ERROR = ''
 
 
 jobstores = {
@@ -70,7 +67,7 @@ scheduler.start(paused=True)
 # scheduler events
 # attach event listeners to the scheduler
 # the event moudle for specifics on the available events and their attributes.
-scheduler.add_listener(my_listener,EVENT_JOB_EXECUTED | ECENT_JOB_ERROR)
+scheduler.add_listener(my_listener,EVENT_JOB_EXECUTED | EVENT_JOB_ERROR)
 
 
 
